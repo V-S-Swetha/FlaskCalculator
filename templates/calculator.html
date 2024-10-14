@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="number"],
+        select,
+        button {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 20px;
+            color: #28a745;
+        }
+
+        .error {
+            color: #dc3545;
+            font-size: 16px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Simple Calculator</h1>
+        <form action="/calculate" method="POST">
+            <input type="number" name="num1" placeholder="Enter first number" required>
+            <input type="number" name="num2" placeholder="Enter second number" required>
+
+            <select name="operation" required>
+                <option value="add">Add</option>
+                <option value="subtract">Subtract</option>
+                <option value="multiply">Multiply</option>
+                <option value="divide">Divide</option>
+            </select>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        {% if result is not none %}
+            <div class="result">
+                <h2>Result: {{ result }}</h2>
+            </div>
+        {% endif %}
+
+        {% if error_message %}
+            <div class="error">{{ error_message }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
